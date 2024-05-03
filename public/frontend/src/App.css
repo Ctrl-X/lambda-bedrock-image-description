@@ -13,8 +13,18 @@
     pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* Font size for mobile devices */
+@media only screen and (max-width: 767px) {
+    h1 {
+        font-size: 15px !important;
+        line-height: 15px  !important;
+    }
 
+    .App-link {
+        font-size: 15px  !important;
+        line-height: 15px  !important;
+        color: #fff;
+    }
 }
 
 h1{
@@ -29,7 +39,7 @@ h1{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    font-size: calc(10px + 2vmin);
+    padding: 10px;
     color: white;
 }
 
@@ -44,14 +54,9 @@ h1{
     align-items: start;
     flex: 1;
     margin: 20px;
-
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.imageSuccess{
+    flexDirection: "row"
 }
+

@@ -147,13 +147,15 @@ const ImageDescription: React.FC = ({ apigateway }) => {
         }
 
         {processingStatus === "success" && (
-            <Layout style={{ flexDirection: "row" }}>
+            <Layout style={{ flexDirection: "row",flexWrap:"wrap" }}>
                 <Image
                     style={{ paddingRight: "12px" }}
                     width={500}
                     src={previewImage}
                 />
-                <Descriptions column={1} title="Product Info" bordered items={items} />
+                <Descriptions column={1}
+                              title="Product Info"
+                              bordered items={items} />
             </Layout>
         )}
     </>
