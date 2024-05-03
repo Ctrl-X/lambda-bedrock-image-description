@@ -1,17 +1,17 @@
 version: 1
 frontend:
-  appRoot: public
   phases:
     preBuild:
       commands:
-        - npm install
+        - npm ci
     build:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: ../build
+    baseDirectory: build
     files:
-      - "**/*"
+      - '**/*'
   cache:
     paths:
       - node_modules/**/*
+  appRoot: public
