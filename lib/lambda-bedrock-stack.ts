@@ -4,14 +4,10 @@ import { Function, Runtime, AssetCode, Code } from "aws-cdk-lib/aws-lambda"
 import { Duration, SecretValue, Stack, StackProps } from "aws-cdk-lib"
 import s3 = require("aws-cdk-lib/aws-s3")
 import { Construct } from "constructs"
-import { BuildSpec } from "aws-cdk-lib/aws-codebuild"
-
-import { App, GitHubSourceCodeProvider } from "@aws-cdk/aws-amplify-alpha"
 
 interface LambdaApiStackProps extends StackProps {
     functionName: string
 }
-
 
 export class CDKExampleLambdaApiStack extends Stack {
     private restApi: RestApi
@@ -28,9 +24,9 @@ export class CDKExampleLambdaApiStack extends Stack {
                 stageName: "beta",
                 metricsEnabled: true,
                 loggingLevel: MethodLoggingLevel.INFO,
-                dataTraceEnabled: true
+                dataTraceEnabled: true,
             },
-            binaryMediaTypes: ["multipart/form-data"]
+            binaryMediaTypes: ["multipart/form-data"],
         })
 
         const lambdaPolicy = new PolicyStatement()
@@ -45,7 +41,7 @@ export class CDKExampleLambdaApiStack extends Stack {
         lambdaPolicy.addResources(this.bucket.bucketArn)
         lambdaPolicy.addResources(
             `${this.bucket.bucketArn}/*`,
-            `arn:aws:bedrock:*::foundation-model/*`
+            `arn:aws:bedrock:*::foundation-model/*`,
         )
 
         this.lambdaFunction = new Function(this, props.functionName, {
@@ -57,47 +53,11 @@ export class CDKExampleLambdaApiStack extends Stack {
             // role: lambdaRole,
             timeout: Duration.seconds(300),
             environment: {
-                BUCKET: this.bucket.bucketName
-            }
+                BUCKET: this.bucket.bucketName,
+            },
         })
 
         this.lambdaFunction.addToRolePolicy(lambdaPolicy)
         this.restApi.root.addMethod("POST", new LambdaIntegration(this.lambdaFunction, {}))
-
-
-        // Add Amplify App for hosting the React frontend
-        const amplifyApp = new App(this, "ReactApp", {
-            sourceCodeProvider: new GitHubSourceCodeProvider({
-                owner: "Ctrl-X",
-                repository: "lambda-bedrock-image-description",
-                oauthToken: SecretValue.secretsManager("github-token"), // Add this line to provide the GitHub access token
-            }),
-            buildSpec: BuildSpec.fromObjectToYaml({
-                version: "1.0",
-                frontend: {
-                    phases: {
-                        preBuild: {
-                            commands: [
-                                "cd public", // Change directory to the 'public' folder
-                                "npm ci",
-                            ],
-                        },
-                        build: {
-                            commands: ["npm run build"],
-                        },
-                    },
-                    artifacts: {
-                        baseDirectory: "public/build", // Update the base directory to 'public/build'
-                        files: ["**/*"],
-                    },
-                    cache: {
-                        paths: ["public/node_modules/**/*"], // Update the cache path to 'public/node_modules'
-                    },
-                },
-            }),
-            environmentVariables: {
-                REACT_APP_API_URL: this.restApi.url,
-            },
-        });
     }
 }
