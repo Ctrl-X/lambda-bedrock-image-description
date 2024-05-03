@@ -5,7 +5,8 @@
     "lambda": "bin/lambda.js"
   },
   "scripts": {
-    "build": "npm run prettier && tsc && npm run build-lambda",
+    "build": "npm run prettier && tsc && npm run build-lambda && npm run build-amplify",
+    "build-amplify": "cd public && npm run build",
     "build-lambda": "cd src && npm run build",
     "watch": "tsc -w",
     "cdk": "cdk",
