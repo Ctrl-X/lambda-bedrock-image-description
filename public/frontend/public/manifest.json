@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Product description with Bedrock",
+  "name": "How to use Claude 3 Sonnet to analyse product pictures",
   "icons": [
     {
       "src": "favicon.ico",
