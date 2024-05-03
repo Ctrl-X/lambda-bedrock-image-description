@@ -1,4 +1,4 @@
-import { LambdaIntegration, MethodLoggingLevel, RestApi } from "aws-cdk-lib/aws-apigateway"
+import { Cors, LambdaIntegration, MethodLoggingLevel, RestApi } from "aws-cdk-lib/aws-apigateway"
 import { ManagedPolicy, PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam"
 import { Function, Runtime, AssetCode, Code } from "aws-cdk-lib/aws-lambda"
 import { Duration, SecretValue, Stack, StackProps } from "aws-cdk-lib"
@@ -27,6 +27,11 @@ export class CDKExampleLambdaApiStack extends Stack {
                 dataTraceEnabled: true,
             },
             binaryMediaTypes: ["multipart/form-data"],
+            defaultCorsPreflightOptions: {
+                allowOrigins: Cors.ALL_ORIGINS, // Replace with your allowed origins
+                allowMethods: Cors.ALL_METHODS, // Allow all HTTP methods
+                allowHeaders: ["*"], // Add any required headers
+            },
         })
 
         const lambdaPolicy = new PolicyStatement()
