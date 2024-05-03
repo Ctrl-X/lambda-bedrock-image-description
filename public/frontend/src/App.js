@@ -2,7 +2,7 @@ import logo from "./logo.svg"
 import "./App.css"
 import ImageDescription from "./component/ImageDescription"
 import type { MenuProps } from "antd"
-import { Layout, Menu, Space, theme } from "antd"
+import { Alert, Layout, Menu, Space, theme } from "antd"
 import {
     GithubOutlined
 } from "@ant-design/icons"
@@ -34,6 +34,8 @@ function App() {
                 </Space>
                 </a>
             </Header>
+
+            <Alert message="This project is a demonstration / proof-of-concept and is not intended for use in production environments. It is provided as-is, without warranty or guarantee of any kind. The code and any accompanying materials are for educational, testing, or evaluation purposes only." type="warning" />
 
             <Content className="App-Content">
                 <div className="image-uploader">
