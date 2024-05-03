@@ -14,6 +14,14 @@ function App() {
         <Layout className="App">
             <Header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
+
+                <h1>
+                    Generate Product Description
+                    <br />
+                    <small>using Claude 3 Sonnet on Bedrock</small>
+
+                </h1>
+
                 <a
                     className="App-link"
                     href="https://github.com/Ctrl-X/lambda-bedrock-image-description/tree/withAmplify"
@@ -21,7 +29,7 @@ function App() {
                     rel="noopener noreferrer"
                     aria-label="GitHub Repository"
                 ><Space>
-                    View on
+                    <span>View on</span>
                     <GithubOutlined style={{ fontSize: 30 }} />
                 </Space>
                 </a>
@@ -29,7 +37,8 @@ function App() {
 
             <Content className="App-Content">
                 <div className="image-uploader">
-                    <ImageDescription />
+                    <ImageDescription
+                        apigateway="https://w3mckw4goc.execute-api.us-west-2.amazonaws.com/beta/" />
 
                 </div>
 
