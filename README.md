@@ -3,7 +3,7 @@
 This project demonstrate how to use a lambda function to extract information from a picture using generative AI.
 To achieve that, we use Claude v3 Sonnet inside Bedrock to provide vision capability.
 
-![Product information automatically generated](./public/frontend/public/sitepreview.png)
+![Product information automatically generated](public/frontend/public/sitepreview.png)
 
 
 # What's inside?
@@ -13,7 +13,7 @@ This is code sample that uses the AWS Cloud Development Kit (CDK) to:
 * Create a node.js Lambda function that can be invoked using API Gateway
 * Create an S3 bucket to save the picture
 
-![AWS Architecture diagram](./Bedrock-Image-description.png)
+![AWS Architecture diagram](Bedrock-Image-description.png)
 
 
 
