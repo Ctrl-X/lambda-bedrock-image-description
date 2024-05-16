@@ -24,7 +24,7 @@ const handler = async function (event: any, context: any) {
             // productImage is the form-data key associated to the file in the multipart
             const image = formObject.productImage
 
-            // Exemple of getting description from Bedrock
+            // Example of getting description from Bedrock
             const bedRockResult = await describePicture(image)
             if (bedRockResult.statusCode != 200) {
                 return bedRockResult // return the error as is
@@ -36,13 +36,13 @@ const handler = async function (event: any, context: any) {
                 }
             }
 
-            // Example of uploading the file in S3
-            const s3result = await uploadToS3(image)
-
-            if (s3result.statusCode == 200) {
-                const { fileName } = s3result
-                bodyResult = { ...bodyResult, fileName }
-            }
+            // Optional :  Example of uploading the file in S3
+            // const s3result = await uploadToS3(image)
+            //
+            // if (s3result.statusCode == 200) {
+            //     const { fileName } = s3result
+            //     bodyResult = { ...bodyResult, fileName }
+            // }
         }
     } catch (error) {
         if (error instanceof Error) {
