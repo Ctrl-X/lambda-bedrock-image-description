@@ -10,3 +10,4 @@ cdk.out
 /public/package-lock.json
 /src/package-lock.json
 /package-lock.json
+/public/amplifyAccess

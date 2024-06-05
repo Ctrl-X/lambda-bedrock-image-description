@@ -37,6 +37,10 @@ export class CDKExampleLambdaApiStack extends Stack {
         const lambdaPolicy = new PolicyStatement()
         // Permission to call bedrock models
         lambdaPolicy.addActions("bedrock:InvokeModel")
+        lambdaPolicy.addResources(
+            `${this.bucket.bucketArn}/*`,
+            `arn:aws:bedrock:*::foundation-model/*`,
+        )
 
         //Permissions to save or get file in S3
         lambdaPolicy.addActions("s3:ListBucket")
@@ -44,10 +48,6 @@ export class CDKExampleLambdaApiStack extends Stack {
         lambdaPolicy.addActions("s3:GetObject")
         lambdaPolicy.addActions("s3:PutObject")
         lambdaPolicy.addResources(this.bucket.bucketArn)
-        lambdaPolicy.addResources(
-            `${this.bucket.bucketArn}/*`,
-            `arn:aws:bedrock:*::foundation-model/*`,
-        )
 
         this.lambdaFunction = new Function(this, props.functionName, {
             functionName: props.functionName,
@@ -59,6 +59,7 @@ export class CDKExampleLambdaApiStack extends Stack {
             timeout: Duration.seconds(300),
             environment: {
                 BUCKET: this.bucket.bucketName,
+                MODEL_ID: "anthropic.claude-3-sonnet-20240229-v1:0",
             },
         })
 

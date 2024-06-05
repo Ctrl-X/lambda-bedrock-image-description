@@ -8,9 +8,11 @@ async function describePicture(image: any) {
     const buffer = Buffer.from(image.content, "binary")
      const base64Image = buffer.toString('base64');
 
+    // modelId: "anthropic.claude-3-haiku-20240307-v1:0",
+    // modelId: "anthropic.claude-3-sonnet-20240229-v1:0",
     // prepare Claude 3 prompt
     const params = {
-        modelId: "anthropic.claude-3-sonnet-20240229-v1:0",
+        modelId: process.env.MODEL_ID,
         contentType: "application/json",
         accept: "application/json",
         body: JSON.stringify({
