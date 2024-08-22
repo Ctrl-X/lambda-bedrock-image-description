@@ -22,17 +22,6 @@ function App() {
 
                 </h1>
 
-                <a
-                    className="App-link"
-                    href="https://github.com/Ctrl-X/lambda-bedrock-image-description/tree/withAmplify"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub Repository"
-                ><Space>
-                    <span>View on</span>
-                    <GithubOutlined style={{ fontSize: 30 }} />
-                </Space>
-                </a>
             </Header>
 
             <Alert message="This project is a demonstration / proof-of-concept and is not intended for use in production environments. It is provided as-is, without warranty or guarantee of any kind. The code and any accompanying materials are for educational, testing, or evaluation purposes only." type="warning" />
