@@ -59,7 +59,8 @@ export class CDKExampleLambdaApiStack extends Stack {
             timeout: Duration.seconds(300),
             environment: {
                 BUCKET: this.bucket.bucketName,
-                MODEL_ID: "anthropic.claude-3-sonnet-20240229-v1:0",
+                //MODEL_ID: "anthropic.claude-3-sonnet-20240229-v1:0",
+                MODEL_ID: "anthropic.claude-3-5-sonnet-20240620-v1:0",
             },
         })
 

@@ -22,6 +22,7 @@ function App() {
 
                 </h1>
 
+                <div>&nbsp;</div>
             </Header>
 
             <Alert message="This project is a demonstration / proof-of-concept and is not intended for use in production environments. It is provided as-is, without warranty or guarantee of any kind. The code and any accompanying materials are for educational, testing, or evaluation purposes only." type="warning" />
